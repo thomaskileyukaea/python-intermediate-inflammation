@@ -38,3 +38,11 @@ def test_daily_standard_deviation(data, expected_standard_deviation):
     from inflammation.models import s_dev
     result_data = s_dev(data)['standard deviation']
     npt.assert_approx_equal(result_data, expected_standard_deviation)
+
+
+def test_daily_standard_deviation_on_np_array():
+    from inflammation.models import s_dev
+    data = np.array([[0.0]])
+    expected_std_devs = [[0.0]]
+    out = s_dev(data)['standard deviation']
+    npt.assert_array_almost_equal(data, expected_std_devs)
