@@ -2,7 +2,7 @@ import glob
 import os
 import numpy as np
 
-from inflammation import models, views
+from inflammation import models
 
 
 def compute_standard_deviation_by_data(all_loaded_data):
@@ -23,10 +23,5 @@ def analyse_data(data_dir):
         raise ValueError(f"No inflammation csv's found in path {data_dir}")
     data = map(models.load_csv, data_file_paths)
     daily_standard_deviation = compute_standard_deviation_by_data(data)
-
-    graph_data = {
-        'standard deviation by day': daily_standard_deviation,
-    }
-    # views.visualize(graph_data)
 
     return daily_standard_deviation

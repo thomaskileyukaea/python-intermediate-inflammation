@@ -21,7 +21,11 @@ def main(args):
 
 
     if args.full_data_analysis:
-        analyse_data(os.path.dirname(InFiles[0]))
+        data_result = analyse_data(os.path.dirname(InFiles[0]))
+        graph_data = {
+            'standard deviation by day': data_result,
+        }
+        views.visualize(graph_data)
         return
 
     for filename in InFiles:
