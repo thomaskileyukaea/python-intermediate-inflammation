@@ -6,6 +6,7 @@ import os
 
 from inflammation import models, views
 from inflammation.compute_data import analyse_data
+from inflammation.data_source import CSVDataSource
 
 
 def main(args):
@@ -20,7 +21,8 @@ def main(args):
         InFiles = [args.infiles]
 
     if args.full_data_analysis:
-        data_result = analyse_data(os.path.dirname(InFiles[0]))
+        data_source = CSVDataSource(os.path.dirname(InFiles[0]))
+        data_result = analyse_data(data_source)
         views.visualize_standard_deviation(data_result)
         return
 
