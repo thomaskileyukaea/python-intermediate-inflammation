@@ -25,3 +25,21 @@ class CSVDataSource(DataSource):
             raise ValueError(f"No inflammation csv's found in path {self.dir_path}")
         data = map(models.load_csv, data_file_paths)
         return list(data)
+
+
+
+class UserProvidSpecificFilesDataSource(DataSource):
+    def load_data(self):
+        paths = []
+        while(True):
+            input_string = input('Enter path to CSV or press enter to process paths collected: ')
+            if(len(input_string) == 0):
+                print(f'Finished entering input - will process {len(paths)} CSVs')
+                break
+            if os.path.exists(input_string):
+                paths.append(input_string)
+            else:
+                print(f'Path {input_string} does not exist, please enter a valid path')
+
+        data = map(models.load_csv, paths)
+        return list(data)
