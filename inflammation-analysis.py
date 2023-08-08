@@ -19,13 +19,9 @@ def main(args):
     if not isinstance(InFiles, list):
         InFiles = [args.infiles]
 
-
     if args.full_data_analysis:
         data_result = analyse_data(os.path.dirname(InFiles[0]))
-        graph_data = {
-            'standard deviation by day': data_result,
-        }
-        views.visualize(graph_data)
+        views.visualize_standard_deviation(data_result)
         return
 
     for filename in InFiles:

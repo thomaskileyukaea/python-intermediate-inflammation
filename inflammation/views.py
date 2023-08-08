@@ -22,3 +22,16 @@ def visualize(data_dict):
     fig.tight_layout()
 
     plt.show()
+
+
+def visualize_standard_deviation(deviation_data):
+    fig = plt.figure(figsize=(4, 3.0))
+
+    axes = fig.add_subplot(1, 1, 1)
+
+    axes.set_ylabel('Standard deviation between files')
+    axes.stem(deviation_data)
+
+    fig.tight_layout()
+
+    plt.show()
