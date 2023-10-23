@@ -2,6 +2,7 @@
 
 import numpy as np
 import numpy.testing as npt
+import os
 
 
 def test_daily_mean_zeros():
@@ -29,3 +30,10 @@ def test_daily_mean_integers():
     # Need to use Numpy testing functions to compare arrays
     npt.assert_array_equal(daily_mean(test_input), test_result)
 
+def test_load_from_json(tmpdir):
+    from inflammation.models import load_json
+    example_path = os.path.join(tmpdir, 'example.json')
+    with open(example_path, 'w') as temp_json_file:
+        temp_json_file.write('[{"observations":[1, 2, 3]},{"observations":[4, 5, 6]}]')
+    result = load_json(example_path)
+    npt.assert_array_equal(result, [[1, 2, 3], [4, 5, 6]])
